@@ -1,0 +1,217 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "eventendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "rendezvous.com",
+  "ownerName" : "rendezvous.com",
+  "packagePath" : "api",
+  "methods" : {
+    "eventendpoint.updateEvent" : {
+      "path" : "event",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.rendezvous.api.EventEndpoint.updateEvent",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "eventendpoint.getEvent" : {
+      "path" : "event/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.rendezvous.api.EventEndpoint.getEvent",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "eventendpoint.insertEvent" : {
+      "path" : "event",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.rendezvous.api.EventEndpoint.insertEvent",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "eventendpoint.removeEvent" : {
+      "path" : "event/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.rendezvous.api.EventEndpoint.removeEvent",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "eventendpoint.listEvent" : {
+      "path" : "event",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.rendezvous.api.EventEndpoint.listEvent",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Event" : {
+        "id" : "Event",
+        "type" : "object",
+        "properties" : {
+          "eventId" : {
+            "type" : "string"
+          },
+          "creator" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "startTime" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "endTime" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "location" : {
+            "type" : "string"
+          },
+          "attendingUsers" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          },
+          "invitedUsers" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "CollectionResponse_Event" : {
+        "id" : "CollectionResponse_Event",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Event"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.rendezvous.api.EventEndpoint.updateEvent" : {
+        "request" : {
+          "$ref" : "Event"
+        },
+        "response" : {
+          "$ref" : "Event"
+        }
+      },
+      "com.rendezvous.api.EventEndpoint.getEvent" : {
+        "response" : {
+          "$ref" : "Event"
+        }
+      },
+      "com.rendezvous.api.EventEndpoint.insertEvent" : {
+        "request" : {
+          "$ref" : "Event"
+        },
+        "response" : {
+          "$ref" : "Event"
+        }
+      },
+      "com.rendezvous.api.EventEndpoint.removeEvent" : {
+      },
+      "com.rendezvous.api.EventEndpoint.listEvent" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Event"
+        }
+      }
+    }
+  }
+}
